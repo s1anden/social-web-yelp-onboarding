@@ -103,6 +103,9 @@
             <link rel="stylesheet" type="text/css" media="all" href="http://s3-media4.fl.yelpcdn.com/assets/2/www/css/89cf989345e3/www-pkg.css">
     <link rel="stylesheet" type="text/css" media="all" href="http://s3-media2.fl.yelpcdn.com/assets/2/www/css/34aac045492d/homepage.css">
 
+    <link rel="stylesheet" type="text/css" media="all" href="http://s3-media4.fl.yelpcdn.com/assets/2/www/css/ebd8f0e0a903/www-pkg.css">
+    <link rel="stylesheet" type="text/css" media="all" href="http://s3-media2.fl.yelpcdn.com/assets/2/www/css/34aac045492d/homepage.css">
+
 
 
 
@@ -110,6 +113,7 @@
     <script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
 
     <script>
+        var currUser;
 	    $(function() {
 	    	$(".media-block-large").hover(function(event) {
 	    		$(this).find(".photo-box").toggleClass("changed");
@@ -161,12 +165,31 @@
             $("#signup-button").on('click', function(event) {
                 $(".signup-wrapper, .picture-container").css("display", "none");
                 $("#select-interests").css("display", "block");
+                currUser = $("#first_name").val();
             });
             $(".interest").on('click', function(event) {
                 $(this).toggleClass("selected");
             });
             $("#interests-button").on('click', function(event) {
-                $("#select-interests").css("display", "block");
+                $("#select-interests").css("display", "none");
+                $("#first-review").css("display", "block");
+            });
+
+            // Star rating logic
+            $(".stars-0 li").hover(function(event) {
+                var starNum = $(this).children('input').val() * 36;
+                $('.stars-0').css('background-position', '0 -' + starNum + 'px');
+            });
+
+            $(".stars-0 li").click(function(event) {
+                var starNum = $(this).children('input').val() * 36;
+                $('.stars-0').css('background-position', '0 -' + starNum + 'px');
+            });
+
+            $("#review-button").on("click", function(event) {
+                $(".logged-out-nav").css("display", "none");
+                $("#topbar-account-item").css("display", "block");
+                $("#signup-pitch").css("display", "none");
             });
 	    });
     </script>
@@ -460,9 +483,10 @@
     		cursor:pointer;
     		text-align: center;
     	}
-        #select-interests {
+        #select-interests, #first-review {
             text-align: center;
             width:100%;
+            height:100%;
             position:absolute;
             top:0px;
             left:0px;
@@ -487,6 +511,35 @@
         #interests-button {
             position:relative;
             bottom:20px;
+        }
+        .stars-0 {
+            background-position: 0 0;
+            cursor:pointer;
+        }
+        .first-review {
+            text-align:left;
+            padding-top:50px;
+            padding-left:300px;
+        }
+        .first-review input[type="text"] {
+            width:300px;
+            height:20px;
+            margin-top:10px;
+            margin-bottom:20px;
+        }
+        .first-review textarea {
+            margin-top:20px;
+            margin-bottom:20px;
+        }
+        #question {
+            font-weight:bold;
+        }
+        #review-button {
+            position:relative;
+            bottom:-50px;
+        }
+        #topbar-account-item {
+            display:none;
         }
     </style>
     </head>
@@ -595,6 +648,92 @@
             </a>
         </li>
     </ul>
+    <div id="topbar-account-item" class="user-avatar clearfix drop-menu-origin">
+        <a href="javascript:;" id="topbar-account-link" class="drop-menu-link inline-block clearfix header-button">
+            
+
+    <img alt="Sam L." class="photo-box-img" height="30" src="images/anon.gif" width="30">
+
+            <i  class="i ig-common i-dropdown-arrow-light-common"></i>
+        </a>
+        <div id="topbar-account-wrap" class="drop-menu drop-menu-has-arrow">
+            <div class="drop-menu-arrow"></div>
+            <div class="drop-menu-group">
+                    <div class="ypassport ypassport-notext media-block">
+        <div class="media-avatar">
+                    
+
+
+    <div class="photo-box pb-60s" data-hovercard-id="Hn5Nbxx5GkngKCKSw5v90g">
+                <a href="/user_details?userid=epFdZ1-wW3iJLMKDVrlTcQ">
+            
+
+    <img alt="Sam L." class="photo-box-img" height="60" src="images/anon.gif" width="60">
+
+        </a>
+
+    </div>
+
+
+
+        </div>
+        <div class="media-story">
+                <ul class="user-passport-info">
+        <li class="user-name">
+                    <a class="user-display-name" href="/user_details?userid=epFdZ1-wW3iJLMKDVrlTcQ" data-hovercard-id="Hn5Nbxx5GkngKCKSw5v90g">Sam L.</a>
+        </li>
+        <li class="user-location">
+            <b>Buffalo, NY</b>
+        </li>
+    </ul>
+
+                <ul class="user-passport-stats">
+        <li class="friend-count">
+            <b  class="i-wrap ig-wrap-common i-friends-orange-common-wrap"><i  class="i ig-common i-friends-orange-common"></i> 0</b>
+        </li>
+        <li class="review-count">
+            <b  class="i-wrap ig-wrap-common i-star-orange-common-wrap"><i  class="i ig-common i-star-orange-common"></i> 0</b>
+        </li>
+    </ul>
+
+        </div>
+    </div>
+
+            </div>
+            <ul class="drop-menu-group">
+                    <li class="drop-down-menu-link">
+                        <strong>        <a href="/user_details?userid=epFdZ1-wW3iJLMKDVrlTcQ">
+                    <span  class="i-wrap ig-wrap-common i-nav-aboutme-common-wrap"><i  class="i ig-common i-nav-aboutme-common"></i> About Me</span>
+
+        </a>
+</strong>
+                    </li>
+                    <li class="drop-down-menu-link">
+                        <strong>        <a href="/profile" id="Zprofile">
+                    <span  class="i-wrap ig-wrap-common i-nav-settings-common-wrap"><i  class="i ig-common i-nav-settings-common"></i> Account Settings</span>
+
+        </a>
+</strong>
+                    </li>
+            </ul>
+            <ul class="drop-menu-group">
+                    <li class="drop-down-menu-link">
+                                <a class="no-js-hidden" href="javascript:;" id="logout-link">
+                    Log Out
+
+        </a>
+
+        <form action="https://www.yelp.com/logout" class="js-hidden" id="logout-form" method="POST" name="logout-form">
+              <input     type="hidden"    name="csrftok"    class="csrftok"    value="90fcd7366a641219e31ab9e978840597942ce37b67a99ef90866d965ddf1091f">
+                          <input type="submit" class="strong_pseudolink" value=Log Out>
+
+        </form>
+    
+                    </li>
+            </ul>
+        </div>
+
+    </div>
 
     </div>
 
@@ -804,6 +943,46 @@
         </div>
 
         <button id="interests-button" value="Sign Up" class="ybtn ybtn-primary ytype disable-on-submit submit signup-button"><span>I'm Done</span></button>
+    </div>
+
+    <div id="first-review">
+        
+        <form class="first-review">
+        <h2>What's your favorite restaurant?</h2>
+        <input type="text">
+        <p>Give your first review for a chance to win a free appetizer!</p>
+        <div class="review-stars clearfix js">
+                <fieldset class="star-rating-widget inline-block" data-component-bound="true">
+                    <legend class="offscreen">Rating</legend>
+                    <ul class="stars-0">
+                            <li>
+                                <input id="rating-1" type="radio" name="rating" value="1">
+                                <label for="rating-1">1 (Eek! Methinks not.)</label>
+                            </li>
+                            <li>
+                                <input id="rating-2" type="radio" name="rating" value="2">
+                                <label for="rating-2">2 (Meh. I've experienced better.)</label>
+                            </li>
+                            <li>
+                                <input id="rating-3" type="radio" name="rating" value="3">
+                                <label for="rating-3">3 (A-OK.)</label>
+                            </li>
+                            <li>
+                                <input id="rating-4" type="radio" name="rating" value="4">
+                                <label for="rating-4">4 (Yay! I'm a fan.)</label>
+                            </li>
+                            <li>
+                                <input id="rating-5" type="radio" name="rating" value="5">
+                                <label for="rating-5">5 (Woohoo! As good as it gets!)</label>
+                            </li>
+                    </ul>
+                    <p class="description"></p>
+                </fieldset>
+
+        </div>
+        <textarea rows="5" cols="50"></textarea>
+        </form>
+        <button id="review-button" value="Sign Up" class="ybtn ybtn-primary ytype disable-on-submit submit signup-button signup_popup_close"><span>Submit</span></button>
     </div>
 
 
