@@ -156,6 +156,18 @@
 	    		$(".event").css("display", "none");
 	    		$(".list").css("display", "");
 	    	});
+
+            // Signup button logic
+            $("#signup-button").on('click', function(event) {
+                $(".signup-wrapper, .picture-container").css("display", "none");
+                $("#select-interests").css("display", "block");
+            });
+            $(".interest").on('click', function(event) {
+                $(this).toggleClass("selected");
+            });
+            $("#interests-button").on('click', function(event) {
+                $("#select-interests").css("display", "block");
+            });
 	    });
     </script>
 
@@ -364,6 +376,7 @@
     		width:900px;
     		height:500px;
     		padding:15px 30px 30px;
+            border-radius:4px;
     	}
     	.signup-wrapper {
     		width:50%;
@@ -375,7 +388,7 @@
     		padding; 0 15px;
     		min-height: 1px;
     		margin-top: 5px;
-    		margine: 33px 0;
+    		margin: 33px 0;
     	}
     	.picture-container {
     		width:50%;
@@ -447,6 +460,34 @@
     		cursor:pointer;
     		text-align: center;
     	}
+        #select-interests {
+            text-align: center;
+            width:100%;
+            position:absolute;
+            top:0px;
+            left:0px;
+            display:none;
+            padding-top:50px;
+        }
+        #topic-list {
+            padding:50px 150px;
+        }
+        .interest {
+            padding:5px;
+            border-radius: 4px;
+            background-color:red;
+            margin:5px;
+            display:inline-block;
+            color:whitesmoke;
+        }
+        .interest:hover, .interest.selected {
+            cursor:pointer;
+            background-color:#a20000;
+        }
+        #interests-button {
+            position:relative;
+            bottom:20px;
+        }
     </style>
     </head>
 
@@ -546,7 +587,7 @@
                         <div class="header-account webview-hidden">
                 <ul class="logged-out-nav">
         <li>
-            <a href="https://www.yelp.com/signup" id="header-sign-up" class="ybtn ybtn-primary header-button sign-up">Sign Up</a>
+            <a id="header-sign-up" class="ybtn ybtn-primary header-button sign-up signup_popup_open">Sign Up</a>
         </li>
         <li class="text-centered">
             <a class="header-nav-link log-in" href="https://www.yelp.com/login?return_url=%2Fpittsburgh">
@@ -675,7 +716,7 @@
                     </fieldset>
                 
 
-        <form action="/signup" class="yform signup-form  city-hidden" id="signup-form" method="POST">
+        <form class="yform signup-form  city-hidden" id="signup-form" method="POST">
               <input     type="hidden"    name="csrftok"    class="csrftok"    value="700adc24df32a4639f0fc8cda8ab21a2abecb588db24e5917cf07ae2c85ee660">
                       <ul class="inline-layout clearfix">
                     <li>
@@ -699,7 +740,7 @@
  and     <a class="legal-link" href="/tos/privacy_en_us_20130910">Privacy Policy</a>
 .
         </p>
-        <button id="signup-button" type="submit" value="Sign Up" class="ybtn ybtn-primary ytype disable-on-submit submit signup-button"><span>Sign Up</span></button>
+        <button id="signup-button" value="Sign Up" class="ybtn ybtn-primary ytype disable-on-submit submit signup-button"><span>Sign Up</span></button>
 
         </form>
     
@@ -717,6 +758,56 @@
             <img src="https://s3-media4.fl.yelpcdn.com/assets/2/www/img/1e82406ff345/signup/signup_illustration.png" />
         </div>
     </div></div></div>
+    
+    <div id="select-interests">
+        <h2>We'd like to get to know you better</h2>
+        <p>Tell us about your interests</p>
+        <div id="topic-list">
+            <span class="interest">Bagels</span>
+            <span class="interest">Chinese</span>
+            <span class="interest">Breakfast and Brunch</span>
+            <span class="interest">Japanese</span>
+            <span class="interest">Breweries</span>
+            <span class="interest">Coffee & Tea</span>
+            <span class="interest">Bakeries</span>
+            <span class="interest">Shaved Ice</span>
+            <span class="interest">Donuts</span>
+            <span class="interest">Soul Food</span>
+            <span class="interest">Farmers Market</span>
+            <span class="interest">Steakhouses</span>
+            <span class="interest">Food Trucks</span>
+            <span class="interest">Ice Cream and Frozen Yogurt</span>
+            <span class="interest">Juice Bars and Smoothies</span>
+            <span class="interest">Delis</span>
+            <span class="interest">Specialty Food</span>
+            <span class="interest">Tea Rooms</span>
+            <span class="interest">Wineries</span>
+            <span class="interest">American</span>
+            <span class="interest">Desserts</span>
+            <span class="interest">Burgers</span>
+            <span class="interest">Chicken Wings</span>
+            <span class="interest">Sandwiches</span>
+            <span class="interest">Pizza</span>
+            <span class="interest">Diners</span>
+            <span class="interest">Fast Food</span>
+            <span class="interest">Italian</span>
+            <span class="interest">Beer, Wine and Spirits</span>
+            <span class="interest">Mexican</span>
+            <span class="interest">Food Delivery Services</span>
+            <span class="interest">Seafood</span>
+            <span class="interest">Convenience Stores</span>
+            <span class="interest">Sushi Bars</span>
+            <span class="interest">Thai</span>
+            <span class="interest">Soup</span>
+            <span class="interest">Indian</span>
+            <span class="interest">Gluten-Free</span>
+        </div>
+
+        <button id="interests-button" value="Sign Up" class="ybtn ybtn-primary ytype disable-on-submit submit signup-button"><span>I'm Done</span></button>
+    </div>
+
+
+
     </div>
 
 
