@@ -107,6 +107,7 @@
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
 
     <script>
 	    $(function() {
@@ -117,12 +118,43 @@
 	    		$(this).find(".photo-box").toggleClass("changed");
 	    		$(this).find(".media-story").css("display", "none");
 	    	});
+	    	$("#signup_popup").popup({
+	    		color: '#000'
+	    	});
 
-	    });
-
-	    $(function() {
 	    	$("#signup").on('click', function(event) {
-	    		$(".signup-popup").css("display","block");
+	    		$("body").toggleClass("changed");
+	    	});
+
+	    	// Filter events
+	    	$("#filter-all").on('click', function(event) {
+	    		$(".selected").toggleClass("selected");
+	    		$(this).parent().toggleClass("selected");
+	    		$(".restaurant").css("display", "");
+	    		$(".event").css("display", "");
+	    		$(".list").css("display", "");
+	    	});
+
+	    	$("#filter-restaurants").on('click', function(event) {
+	    		$(".selected").toggleClass("selected");
+	    		$(this).parent().toggleClass("selected");
+	    		$(".restaurant").css("display", "");
+	    		$(".event").css("display", "none");
+	    		$(".list").css("display", "none");
+	    	});
+	    	$("#filter-events").on('click', function(event) {
+	    		$(".selected").toggleClass("selected");
+	    		$(this).parent().toggleClass("selected");
+	    		$(".restaurant").css("display", "none");
+	    		$(".event").css("display", "");
+	    		$(".list").css("display", "none");
+	    	});
+	    	$("#filter-lists").on('click', function(event) {
+	    		$(".selected").toggleClass("selected");
+	    		$(this).parent().toggleClass("selected");
+	    		$(".restaurant").css("display", "none");
+	    		$(".event").css("display", "none");
+	    		$(".list").css("display", "");
 	    	});
 	    });
     </script>
@@ -225,10 +257,10 @@
     		border-radius:10px;
     		border-color: whitesmoke;
     		border-style: solid;
-    		border-width: thin;
+    		border-width: 2px;
     		padding:2px;
     	}
-    	.thin-text {
+    	.thin-text, .event-time-text, .list-location {
     		color: whitesmoke;
     	}
     	.price-range{
@@ -238,7 +270,7 @@
     	.category-str-list > a{
     		color:whitesmoke;
     	}
-    	.price-category {
+    	.price-category, .event-time, .list-location {
     		position:absolute;
     		top:60px;
     		left:-7px;
@@ -261,7 +293,7 @@
     		opacity:1;
     		display:none;
     	}
-    	.signup-popup {
+    	div.signup-popup {
     		width:500px;
     		height:500px;
     		border-style:solid;
@@ -273,7 +305,148 @@
     		position:fixed;
     		margin:auto;
     	}
-
+    	.best-of-yelp-main .stage {
+    		border:0;
+    	}
+    	.layout-border .column-alpha {
+    		border:0;
+    	}
+    	.grid-filter {
+    		width:920px;
+    		background:url(images/x.png) no-repeat center,linear-gradient(#c41200, #af0606);
+    		background-size: 1380px auto,100%;
+    		padding:10px;
+    		border-radius:4px;
+    	}
+    	.grid-filter-items {
+    		list-style: none;
+    	}
+    	.grid-filter-item {
+    		display:inline-block;
+    		padding-top:5px;
+    		padding-bottom: 5px;
+    		padding-left: 20px;
+    		padding-right: 20px;
+    		margin-right: 20px;
+    		margin-left: 20px;
+    		border-radius: 4px;
+    	}
+    	.grid-filter-text {
+    		color:whitesmoke;
+    	}
+    	.grid-filter-item.selected, .grid-filter-item:hover{
+    		background-color: #a20000;
+    	}
+    	.grid-filter-item:hover  {
+    		cursor:pointer;
+    	}
+    	.best-of-yelp-main .main-content {
+    		margin:6px 0px;
+    	}
+    	#best-of-yelp-module {
+    		padding-left: 12px;
+    	}
+    	#signup-pitch {
+    		margin-right:15px; margin-left:12px;
+    	}
+    	.interested-attendees {
+    		color: whitesmoke;
+    		position:absolute;
+    		top:265px;
+    		left:-10px;
+    		width:300px;
+    	}
+    	.num-interested {
+    		font-weight: bold;
+    	}
+    	.popup-wrapper {
+    		background-color: white;
+    		width:900px;
+    		height:500px;
+    		padding:15px 30px 30px;
+    	}
+    	.signup-wrapper {
+    		width:50%;
+    		float:left;
+    		box-sizing:border-box;
+    		-webkit-box-sizing: border-box;
+    		-moz-box-sizing: border-box;
+    		display:block;
+    		padding; 0 15px;
+    		min-height: 1px;
+    		margin-top: 5px;
+    		margine: 33px 0;
+    	}
+    	.picture-container {
+    		width:50%;
+    		float:right;
+    		position:absolute;
+    		top:0px;
+    		right:0px;
+    		margin-top: 100px;
+    		box-sizing:border-box;
+    		-webkit-box-sizing:border-box;
+    		-moz-box-sizing:border-box;
+    		display:block;
+    	}
+    	.signup-flow {
+    		text-align: center;
+    	}
+    	.flow-start {
+    		margin-left: 25.5px;
+    	}
+    	.signup-flow > * {
+    		width:382px;
+    		margin: 0 -15px;
+    	}
+    	.signup-visible {
+    		display:block;
+    	}
+    	.embossed-box {
+    		padding:30px;
+    		margin:0 auto;
+    		width:300px;
+    		text-align: center;
+    	}
+    	.flow-start .header {
+    		margin-bottom: 30px;
+    	}
+    	.flow-start .fb-button {
+    		width:100%;
+    		margin-bottom: 6px;
+    		position:relative;
+    		overflow: hidden;
+    		border: 1px solid #2b3b6f;
+    		box-shadow: inset 0 1px 0 rgba(255,255,255,0.33);
+    		background-color: #3b5997;
+    		background:linear-gradient(#3b5997, #294683);
+    		border-radius: 5px;
+    		color:#fff;
+    		cursor:pointer;
+    		text-align: left;
+    	}
+    	.flow-start .fb-button .logo {
+    		width:46px;
+    		background:url(images/facebook-logo-png-white-5117.png) no-repeat center;
+    		background-size: 46px 46px;
+    		float:left;
+    		position:absolute;
+    		top:0;
+    		bottom:0;
+    		border-right: 1px solid #2b3b6f;
+    		cursor:pointer;			
+    	}
+    	.flow-start .fb-button .text {
+    		width:254px;
+    		font-size: 14px;
+    		line-height: 16px;
+    		padding:12px 10px;
+    		float:right;
+    		font-weight: bold;
+    		text-shadow: 0 1px 0 #152341;
+    		cursor:pointer;
+    		text-align: center;
+    	}
     </style>
     </head>
 
@@ -283,7 +456,6 @@
 
 
     <body id="yelp_main_body" class="country-us logged-out ytype jquery">
-    <!-- <div class="yelp_main_body"></div> -->
 
             <div id="fb-root"></div>
 
@@ -475,8 +647,76 @@
             <p class="embossed-text-white" style="margin-left:110px;margin-right:110px">
                 People use Yelp to search for everything from the city's tastiest burger to the top brunch spots. What are your friends saying?
             </p>
-            <a href="#" class="ybtn ybtn-primary ytype" id="signup">Create Your Free Account</a>
+            <a href="#" class="ybtn ybtn-primary ytype signup_popup_open" id="signup">Create Your Free Account</a>
+        </div></div>
+        <div id="signup_popup"><div class="clearfix">
+            <div class="popup-wrapper">
+            <div class="signup-wrapper">
+        <div class="signup-flow on-flow-start">
+            
+    <div class="flow-start signup-visible">
+        <div class="embossed-box">
+            <div class="signup-form-container">
+                    <div class="header">
+        <h2>Sign up for Yelp</h2>
+            <p class="subheading">Connect with great local businesses</p>
+    </div>
+
+                            <div class="fb-start">
+            <div class="fb-button">
+                <span class="logo"></span>
+                <div class="text">Sign up with Facebook</div>
+            </div>
+            <p class="legal-copy">Don't worry, we never post without your permission.</p>
         </div>
+
+                    <fieldset class="hr-line">
+                        <legend align="center">OR</legend>
+                    </fieldset>
+                
+
+        <form action="/signup" class="yform signup-form  city-hidden" id="signup-form" method="POST">
+              <input     type="hidden"    name="csrftok"    class="csrftok"    value="700adc24df32a4639f0fc8cda8ab21a2abecb588db24e5917cf07ae2c85ee660">
+                      <ul class="inline-layout clearfix">
+                    <li>
+        <label class="placeholder-sub">First Name</label>
+        <input id="first_name" name="first_name" placeholder="First Name" required="required" type="text" value="">
+    </li>
+
+                    <li>
+        <label class="placeholder-sub">Last Name</label>
+        <input id="last_name" name="last_name" placeholder="Last Name" required="required" type="text" value="">
+    </li>
+
+        </ul>
+        <label class="placeholder-sub">Email</label>
+        <input id="email" name="email" placeholder="Email" required="required" type="email" value="">
+        <label class="placeholder-sub">Password</label>
+        <input id="password" name="password" placeholder="Password" required="required" type="password" value="">
+
+        <p class="legal-copy legal-left">
+            By creating an account, you agree to Yelp’s     <a class="legal-link" href="http://www.yelp.com/static?p=tos">Terms of Service</a>
+ and     <a class="legal-link" href="/tos/privacy_en_us_20130910">Privacy Policy</a>
+.
+        </p>
+        <button id="signup-button" type="submit" value="Sign Up" class="ybtn ybtn-primary ytype disable-on-submit submit signup-button"><span>Sign Up</span></button>
+
+        </form>
+    
+            </div>
+            <div class="sub-text-box">
+                <small class="subtle-text">Already on Yelp? <a class="login-link">Log in</a></small>
+            </div>
+        </div>
+    </div>
+
+            </div>
+    
+
+        <div class="picture-container">
+            <img src="https://s3-media4.fl.yelpcdn.com/assets/2/www/img/1e82406ff345/signup/signup_illustration.png" />
+        </div>
+    </div></div></div>
     </div>
 
 
@@ -497,6 +737,23 @@
                 <div class="ysection clearfix best-of-yelp-main">
                     
                     <div class="stage">
+                    <div class="grid-filter">
+                    	<ul class="grid-filter-items">
+                    		<li class="grid-filter-item selected">
+                    			<span class="grid-filter-text" id="filter-all">All</span>
+                    		</li>
+                    		<li class="grid-filter-item">
+                    			<span class="grid-filter-text" id="filter-restaurants">Restaurants</span>
+                    		</li>
+                    		<li class="grid-filter-item">
+                    			<span class="grid-filter-text" id="filter-lists">Lists</span>
+                    		</li>
+                    		<li class="grid-filter-item">
+                    			<span class="grid-filter-text" id="filter-events">Events</span>
+                    		</li>
+                    	</ul>
+
+                    </div>
                         <div class="main-content" style="margin-left:0;">
                             <ul class="content-list ieSucks">
                                     <li data-section-id="restaurants">
@@ -509,7 +766,7 @@
 
 
     <div class="photo-box pb-60s">
-                <a href="/biz/gaucho-parrilla-argentina-pittsburgh">
+                <a href="www.yelp.com/biz/gaucho-parrilla-argentina-pittsburgh">
             
 
     <img alt="Gaucho Parrilla Argentina" class="photo-box-img gridbox" src="images/gaucho-parilla.jpg">
@@ -536,7 +793,7 @@
 		        <span class="business-attribute price-range" itemprop="priceRange">$$</span>
 		        </span>
 		            <span class="category-str-list">
-		                <a href="/c/pittsburgh/latin">Latin American</a>    </span>
+		                <a href="www.yelp.com/c/pittsburgh/latin">Latin American</a>    </span>
 		        </div>
         
                 <div class="biz-rating biz-rating-medium clearfix">
@@ -547,32 +804,51 @@
         </i>
     </div>
 
-
-                <span class="review-count rating-qualifier">
-            253 reviews
-    </span>
-
         </div>
+    </div>
 
-        <div class="media-block clearfix display-table">
-                <div class="media-avatar">
+    </div>
+
+    </li>
+
+    <li class="media-block media-block-large clearfix last firstgrid event">
+        <div class="media-avatar">
                     
 
 
+    <div class="photo-box pb-60s">
+                <a href="http://www.yelp.com/events/pittsburgh-21-night-fundraiser">
+            
 
-    <div class="photo-box pb-30s">
-            <a href="http://www.yelp.com/user_details?userid=PqXbacy7DEcmBpqvmApapA">
-                <img alt="Ed C." class="photo-box-img" height="30" src="http://s3-media2.fl.yelpcdn.com/photo/qJmNfRDZUsm7KdKe76DNVg/30s.jpg" width="30">
-            </a>
+    <img alt="21+ Night Fundraiser" class="photo-box-img gridbox" src="images/21plus.jpg">
+
+        </a>
     </div>
 
-                </div>
-                <div class="media-story display-table-cell">
-                    <div class="ie-tablecell-hack">
-                        Best <span class="highlighted">steak sandwich</span> I&#39;ve ever had and really good chimichurri.
-                    </div>
-                </div>
+    <div class="media-title gridtitle">
+                <span class="indexed-biz-name"><a class="biz-name" href="http://www.yelp.com/events/pittsburgh-21-night-fundraiser" data-hovercard-id="dZ_op5XLDSySTbmjTK-85Q">21+ Night Fundraiser</a>
+			</span>
+
+	    </div>
+
+
+
         </div>
+                <div class="media-story gridstory">
+            
+    <div>
+    		<div class="data-type"><span class="thin-text">Events</span></div>
+    		<div class="event-time">
+    			<span class="bullet-after">
+    			<span class="event-time-text">Thursday, Dec 4</span>
+    			</span>
+    			<span class="event-time-text">7pm</span>
+    		</div>
+
+    		<div class="interested-attendees">
+    			<span class="num-interested">Who's in? </span>
+    			<span>7 Attending</span>
+    		</div>
     </div>
 
     </div>
@@ -586,7 +862,7 @@
 
 
     <div class="photo-box pb-60s">
-                <a href="/biz/cure-pittsburgh">
+                <a href="www.yelp.com/biz/cure-pittsburgh">
             
 
     <img alt="Cure" class="photo-box-img gridbox" src="images/cure.jpg">
@@ -596,7 +872,7 @@
 
     </div>
     <div class="media-title gridtitle">
-                <span class="indexed-biz-name"><a class="biz-name" href="/biz/cure-pittsburgh" data-hovercard-id="7IgJIZ4gnjio84z8sr_W9g">Cure</a>
+                <span class="indexed-biz-name"><a class="biz-name" href="www.yelp.com/biz/cure-pittsburgh" data-hovercard-id="7IgJIZ4gnjio84z8sr_W9g">Cure</a>
 </span>
 
     </div>
@@ -611,10 +887,10 @@
     <div class="price-category">
                     <span class="bullet-after">
             
-		        <span class="business-attribute price-range" itemprop="priceRange">$$</span>
+		        <span class="business-attribute price-range" itemprop="priceRange">$$$</span>
 		        </span>
 		            <span class="category-str-list">
-		                <a href="/c/pittsburgh/latin">Latin American</a>    </span>
+		                <a href="www.yelp.com/c/pittsburgh/latin">American (New), Mediterranean</a>    </span>
 		        </div>
         
                 <div class="biz-rating biz-rating-medium clearfix">
@@ -664,7 +940,7 @@
 
 
     <div class="photo-box pb-60s">
-                <a href="/biz/meat-and-potatoes-pittsburgh">
+                <a href="www.yelp.com/biz/meat-and-potatoes-pittsburgh">
             
 
     <img alt="Meat &amp; Potatoes" class="photo-box-img gridbox" src="images/meatpot.jpg">
@@ -674,7 +950,7 @@
 
     </div>
 <div class="media-title gridtitle">
-                <span class="indexed-biz-name"><a class="biz-name" href="/biz/meat-and-potatoes-pittsburgh" data-hovercard-id="1HQdQZwnFcXvjgrtDc3Z5A">Meat &amp; Potatoes</a>
+                <span class="indexed-biz-name"><a class="biz-name" href="www.yelp.com/biz/meat-and-potatoes-pittsburgh" data-hovercard-id="1HQdQZwnFcXvjgrtDc3Z5A">Meat &amp; Potatoes</a>
 </span>
 
     </div>
@@ -688,10 +964,10 @@
     <div class="price-category">
                     <span class="bullet-after">
             
-		        <span class="business-attribute price-range" itemprop="priceRange">$$</span>
+		        <span class="business-attribute price-range" itemprop="priceRange">$$$</span>
 		        </span>
 		            <span class="category-str-list">
-		                <a href="/c/pittsburgh/latin">Latin American</a>    </span>
+		                <a href="www.yelp.com/c/pittsburgh/latin">American (New), Gastropubs</a>    </span>
 		        </div>
         
                 <div class="biz-rating biz-rating-medium clearfix">
@@ -703,31 +979,87 @@
     </div>
 
 
-                <span class="review-count rating-qualifier">
-            627 reviews
-    </span>
-
+                
         </div>
+    </div>
 
-        <div class="media-block clearfix display-table">
-                <div class="media-avatar">
+    </div>
+
+    </li>
+
+    <li class="media-block media-block-large clearfix last firstgrid list">
+        <div class="media-avatar">
                     
 
 
+    <div class="photo-box pb-60s">
+                <a href="http://www.yelp.com/list/worldly-eats-pittsburgh">
+            
 
-    <div class="photo-box pb-30s">
-            <a href="http://www.yelp.com/user_details?userid=jSaQ7bsGit5hC41-A0mcYA">
-                <img alt="Jenny M." class="photo-box-img" height="30" src="http://s3-media1.fl.yelpcdn.com/photo/JHbCKo3u6g8JY0TRYDFIhw/30s.jpg" width="30">
-            </a>
+    <img alt="Worldly Eats" class="photo-box-img gridbox" src="images/conflict.jpg">
+
+        </a>
     </div>
 
-                </div>
-                <div class="media-story display-table-cell">
-                    <div class="ie-tablecell-hack">
-                        We had so much fun with the make-your-own <span class="highlighted">Bloody Mary Bar</span>.
-                    </div>
-                </div>
+    <div class="media-title gridtitle">
+                <span class="indexed-biz-name"><a class="biz-name" href="http://www.yelp.com/list/worldly-eats-pittsburgh" data-hovercard-id="dZ_op5XLDSySTbmjTK-85Q">Worldly Eats</a>
+			</span>
+
+	    </div>
+
+
+
         </div>
+                <div class="media-story gridstory">
+            
+    <div>
+    		<div class="data-type"><span class="thin-text">Lists</span></div>
+    		<div class="list-location">
+    			<span>Pittsburgh, PA</span>
+    		</div>
+
+    </div>
+
+    </li>
+
+    <li class="media-block media-block-large clearfix last firstgrid event">
+        <div class="media-avatar">
+                    
+
+
+    <div class="photo-box pb-60s">
+                <a href="http://www.yelp.com/events/braddock-food-truck-round-up">
+            
+
+    <img alt="Food Truck Roundup" class="photo-box-img gridbox" src="images/foodtrucks.jpg">
+
+        </a>
+    </div>
+
+    <div class="media-title gridtitle">
+                <span class="indexed-biz-name"><a class="biz-name" href="http://www.yelp.com/events/braddock-food-truck-round-up" data-hovercard-id="dZ_op5XLDSySTbmjTK-85Q">Food Truck Roundup</a>
+			</span>
+
+	    </div>
+
+
+
+        </div>
+                <div class="media-story gridstory">
+            
+    <div>
+    		<div class="data-type"><span class="thin-text">Events</span></div>
+    		<div class="event-time">
+    			<span class="bullet-after">
+    			<span class="event-time-text">Saturday, Dec 6</span>
+    			</span>
+    			<span class="event-time-text">5pm</span>
+    		</div>
+
+    		<div class="interested-attendees">
+    			<span class="num-interested">Who's in? </span>
+    			<span>3 Attending</span>
+    		</div>
     </div>
 
     </div>
@@ -741,7 +1073,7 @@
 
 
     <div class="photo-box pb-60s">
-                <a href="/biz/las-palmas-carniceria-pittsburgh">
+                <a href="www.yelp.com/biz/las-palmas-carniceria-pittsburgh">
             
 
     <img alt="Las Palmas Carniceria" class="photo-box-img gridbox" src="images/lpc.jpg">
@@ -751,7 +1083,7 @@
         
     </div>
     <div class="media-title gridtitle">
-                <span class="indexed-biz-name"><a class="biz-name" href="/biz/las-palmas-carniceria-pittsburgh" data-hovercard-id="vmjbvDmFNvRJOuNZohVcmg">Las Palmas Carniceria</a>
+                <span class="indexed-biz-name"><a class="biz-name" href="www.yelp.com/biz/las-palmas-carniceria-pittsburgh" data-hovercard-id="vmjbvDmFNvRJOuNZohVcmg">Las Palmas Carniceria</a>
 </span>
 
     </div>
@@ -766,10 +1098,10 @@
         <div class="price-category">
                     <span class="bullet-after">
             
-		        <span class="business-attribute price-range" itemprop="priceRange">$$</span>
+		        <span class="business-attribute price-range" itemprop="priceRange">$</span>
 		        </span>
 		            <span class="category-str-list">
-		                <a href="/c/pittsburgh/latin">Latin American</a>    </span>
+		                <a href="/c/pittsburgh/latin">Mexican</a>    </span>
 		        </div>
                 <div class="biz-rating biz-rating-medium clearfix">
                 
@@ -811,6 +1143,41 @@
 
     </li>
 
+    <li class="media-block media-block-large clearfix last firstgrid list">
+        <div class="media-avatar">
+                    
+
+
+    <div class="photo-box pb-60s">
+                <a href="http://www.yelp.com/list/craft-beer-pittsburgh">
+            
+
+    <img alt="Craft Beer" class="photo-box-img gridbox" src="images/craftbeer.jpg">
+
+        </a>
+    </div>
+
+    <div class="media-title gridtitle">
+                <span class="indexed-biz-name"><a class="biz-name" href="http://www.yelp.com/list/craft-beer-pittsburgh" data-hovercard-id="dZ_op5XLDSySTbmjTK-85Q">Craft Beer</a>
+			</span>
+
+	    </div>
+
+
+
+        </div>
+                <div class="media-story gridstory">
+            
+    <div>
+    		<div class="data-type"><span class="thin-text">Lists</span></div>
+    		<div class="list-location">
+    			<span>Pittsburgh, PA</span>
+    		</div>
+
+    </div>
+
+    </li>
+
                     
     <li class="media-block media-block-large clearfix last restaurant">
         <div class="media-avatar">
@@ -818,7 +1185,7 @@
 
 
     <div class="photo-box pb-60s">
-                <a href="/biz/las-palmas-pittsburgh">
+                <a href="www.yelp.com/biz/las-palmas-pittsburgh">
             
 
     <img alt="Las Palmas" class="photo-box-img gridbox" src="images/lp.jpg">
@@ -828,7 +1195,7 @@
 
     </div>
     <div class="media-title gridtitle">
-                <span class="indexed-biz-name"><a class="biz-name" href="/biz/las-palmas-pittsburgh" data-hovercard-id="JCiEi-03zUzRm7jlm1vsEw">Las Palmas</a>
+                <span class="indexed-biz-name"><a class="biz-name" href="www.yelp.com/biz/las-palmas-pittsburgh" data-hovercard-id="JCiEi-03zUzRm7jlm1vsEw">Las Palmas</a>
 </span>
 
     </div>
@@ -843,10 +1210,10 @@
     <div class="price-category">
                     <span class="bullet-after">
             
-		        <span class="business-attribute price-range" itemprop="priceRange">$$</span>
+		        <span class="business-attribute price-range" itemprop="priceRange">$</span>
 		        </span>
 		            <span class="category-str-list">
-		                <a href="/c/pittsburgh/latin">Latin American</a>    </span>
+		                <a href="www.yelp.com/c/pittsburgh/latin">Mexican</a>    </span>
 		        </div>
         
                 <div class="biz-rating biz-rating-medium clearfix">
@@ -894,7 +1261,7 @@
 
 
     <div class="photo-box pb-60s">
-                <a href="/biz/brgr-pittsburgh">
+                <a href="www.yelp.com/biz/brgr-pittsburgh">
             
 
     <img alt="BRGR" class="photo-box-img gridbox" src="images/brgr.jpg">
@@ -904,7 +1271,7 @@
 
     </div>
     <div class="media-title gridtitle">
-                <span class="indexed-biz-name"><a class="biz-name" href="/biz/brgr-pittsburgh" data-hovercard-id="JCiEi-03zUzRm7jlm1vsEw">BRGR</a>
+                <span class="indexed-biz-name"><a class="biz-name" href="www.yelp.com/biz/brgr-pittsburgh" data-hovercard-id="JCiEi-03zUzRm7jlm1vsEw">BRGR</a>
 </span>
 
     </div>
@@ -922,7 +1289,7 @@
 		        <span class="business-attribute price-range" itemprop="priceRange">$$</span>
 		        </span>
 		            <span class="category-str-list">
-		                <a href="/c/pittsburgh/latin">Latin American</a>    </span>
+		                <a href="www.yelp.com/c/pittsburgh/latin">Burgers, American (Traditional)</a>    </span>
 		        </div>
         
                 <div class="biz-rating biz-rating-medium clearfix">
@@ -1582,6 +1949,5 @@
 
 
         </div> 
-        <div class="signup-popup"></div>
     </body>
 </html>
